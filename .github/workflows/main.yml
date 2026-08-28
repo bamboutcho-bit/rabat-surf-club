@@ -36,16 +36,18 @@ jobs:
 
       - name: Verify static output
         run: |
+          echo "Checking GitHub Pages output..."
           test -f dist/client/index.html
-          echo "Static index.html found:"
+          echo "index.html found:"
           ls -la dist/client
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload GitHub Pages artifact
+      - name: Upload Rabat Surf Club artifact
         uses: actions/upload-pages-artifact@v4
         with:
+          name: rabat-surf-club-pages-${{ github.run_id }}
           path: ./dist/client
           retention-days: 1
 
@@ -62,6 +64,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy Rabat Surf Club to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: rabat-surf-club-pages-${{ github.run_id }}
