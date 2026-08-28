@@ -39,9 +39,11 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Upload build
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
+          name: github-pages
           path: ./dist/client
+          retention-days: 1
 
       - name: Deploy to GitHub Pages
         id: deployment
